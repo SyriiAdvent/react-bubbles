@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Pack } from "@potion/layout";
 import { Svg, Circle } from "@potion/element";
+import { gsap, ScrollToPlugin, Draggable, MotionPathPlugin } from "gsap/all";
 
 const Bubbles = ({ colors }) => {
   const [bubbleData, setBubbleData] = useState([]);
@@ -10,6 +11,7 @@ const Bubbles = ({ colors }) => {
       key: `${i + 1}`
     }));
     setBubbleData(generateBubbleData);
+    gsap.to(".gsap-circle", {duration: 2, rotation: 30, ease: "funWiggle"});
   }, [colors]);
 
   return (
@@ -32,6 +34,7 @@ const Bubbles = ({ colors }) => {
                 if (i < colors.length) {
                   return (
                     <Circle
+                      className="gsap-circle"
                       key={key}
                       cx={x}
                       cy={y}
